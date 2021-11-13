@@ -6,7 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 
 
-class Be_tester(unittest.TestCase):
+class Test_betester(unittest.TestCase):
     def setUp(self):
         # запуск Chrome при начале каждого теста
         self.driver = webdriver.Chrome(r'C:\\Selenium\\chromedriver.exe')
@@ -97,8 +97,8 @@ class Be_tester(unittest.TestCase):
 
     def tearDown(self):
         #закрытие браузера при окончании каждого теста
-        self.driver.close()
+        self.driver.quit()
  
  
-if _name_ == '_main_':
+if __name__ == '_main_':
     unittest.main()

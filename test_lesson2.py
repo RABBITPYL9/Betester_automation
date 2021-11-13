@@ -6,7 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 
 
-class Be_tester(unittest.TestCase):
+class Test_betester(unittest.TestCase):
     def setUp(self):
         # запуск Chrome при начале каждого теста
         self.driver = webdriver.Chrome(r'C:\\Selenium\\chromedriver.exe')
@@ -37,12 +37,33 @@ class Be_tester(unittest.TestCase):
         click_edit = driver.find_element_by_css_selector("#btnSave:nth-child(1)")#Находим кнопку edit
         click_edit.click()#Жмем кнопку edit
         click_gender = driver.find_element_by_css_selector("[value='1']:nth-child(1)")#Находим противоположный пол
-        click_gender.click()
-        checked_gender_val = driver.find_element_by_id("personal_optGender_2")#проверяем новое значени для пола
-        checked_gender_val = checked_gender_val.get_attribute("checked")
+        click_gender.click()#ставим новое значение пола
+        checked_gender_val = driver.find_element_by_id("personal_optGender_2")#находим новое значение установленое в поле Gender
+        checked_gender_val = checked_gender_val.get_attribute("checked")#проверяем что новое значение для пола установлено нужное
         click_selector = driver.find_element_by_id("personal_cmbNation")#находим селектор с выбором страны и нажимаем
         click_selector.click()
-        val_selector = driver.find_element_by_css_selector("[value='193']").click()#Выбираем америку
+        val_selector = driver.find_element_by_css_selector("[value='193']")#Находим Zimbamwean
+        val_selector.click()#кликаем
+        save_but = driver.find_element_by_css_selector("#btnSave:nth-child(1)")#находим кнопку save
+        save_but.click() #жмем по Save кнопке
+        time.sleep(2)
+        checked_nationality = driver.find_element_by_css_selector("[value='193']")#находим что установлена последняя страна в списке
+        checked_nationality = checked_nationality.get_attribute("checked")#проверяем что страна действительно установилась верно
+        edit_emp = driver.find_element_by_css_selector("#btnSave:nth-child(1)")#Находим кнопку edit
+        edit_emp.click()#Жмем кнопку edit
+        another_gender = driver.find_element_by_css_selector("[value='2']:nth-child(1)")#находим значение пола отличное от установленного в данный момент
+        another_gender.click()#жмем по новому значению пола пользователя
+        time.sleep(1)
+        click_selector_nat = driver.find_element_by_id("personal_cmbNation")#находим селектор с выбором страны и нажимаем
+        click_selector_nat.click()
+        val_selector_nat = driver.find_element_by_css_selector("[value='0']")#Находим Zimbamwean
+        val_selector_nat.click()#кликаем
+        save_button = driver.find_element_by_css_selector("#btnSave:nth-child(1)")#находим кнопку save
+        save_button.click() #жмем по Save кнопке
+
+
+
+
     
 
 
@@ -53,8 +74,8 @@ class Be_tester(unittest.TestCase):
 
     def tearDown(self):
         #закрытие браузера при окончании каждого теста
-        self.driver.close()
+        self.driver.quit()
  
  
-if _name_ == '_main_':
+if __name__ == '_main_':
     unittest.main()
